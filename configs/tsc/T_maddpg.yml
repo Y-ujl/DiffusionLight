@@ -1,0 +1,30 @@
+includes:
+  - configs/tsc/base.yml
+
+model:
+  name: T_maddpg
+  train_model: True
+  local_q_learn: False
+  tau: 0.01
+  # 23.3.2 修改 0.01 - 0.0005
+  learning_rate: 0.0005
+  # 23.3.2 添加 noise_rate 高斯噪声
+  noise_rate : 1
+  #batch_size: 256
+  batch_size : 128
+  # 23.3.5 what will happen if buffer size increases #TODO
+  capacity : 10000
+  grad_clip: 0.5
+  epsilon: 0.5
+  epsilon_decay: 0.998
+  epsilon_min: 0.001
+
+
+trainer:
+  learning_start: 1000
+  episodes: 1200
+  update_model_rate: 10
+  #增加target network 更新频率
+  update_target_rate: 30
+  # 修改 20 -> 10
+  action_interval: 10

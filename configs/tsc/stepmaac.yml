@@ -1,0 +1,26 @@
+includes:
+  - configs/tsc/base.yml
+
+model:
+  name: stepmaac
+  train_model: True
+  gamma : 0.95
+  reward_scale : 100.
+  epsilon : 0.005
+  batch_size : 256
+  tau : 0.01
+  n_layers : 16            #N层transformer
+  attention_heads : 4     #手动设置 N
+  c_lr : 0.01             #Adma
+  a_lr : 0.01
+  grad_clip: 0.5
+
+trainer:
+  episodes: 2000
+  learning_start: 500
+  buffer_size: 10000
+  update_model_rate: 10
+  #增加target network 更新频率
+  update_target_rate: 50
+  # 修改 20 -> 10
+  action_interval: 10

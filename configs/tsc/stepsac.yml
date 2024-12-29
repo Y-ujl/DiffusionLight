@@ -1,0 +1,28 @@
+includes:
+  - configs/tsc/base.yml
+
+model:
+  name: stepsac
+  train_model: True
+  tau : 0.01
+  gamma : 0.95
+  reward_scale : 100.
+  epsilon : 0.5
+  batch_size : 256
+  c_lr : 0.001             #Adma
+  a_lr : 0.005
+  eps_start : 1
+  eps_end : 0.1
+  eps_decay : 500000
+  grad_clip: 0.5
+  log_std_bounds : [-1, 1]
+
+trainer:
+  episodes: 1500
+  learning_start: 1000
+  buffer_size: 10000
+  update_model_rate: 10
+  #增加target network 更新频率
+  update_target_rate: 30
+  # 修改 20 -> 10
+  action_interval: 10

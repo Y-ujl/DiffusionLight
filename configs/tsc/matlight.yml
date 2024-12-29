@@ -1,0 +1,39 @@
+includes:
+  - configs/tsc/base.yml
+
+model:
+  name: matlight
+  train_model: True
+  one_hot: True
+  phase: False
+  graphic: False
+  vehicle_max: 1
+  learning_rate: 5e-4
+  mini_batch: 1
+  gamma: 0.99
+  gae_lambda: 0.95
+  grad_clip: 0.5
+  dec_actor: False
+  n_block: 1
+  n_embd: 64
+  n_head: 1
+  encode_state: False
+  share_actor: False
+
+trainer:
+  thread: 16
+  ngpu: 0
+  learning_start: -1
+  buffer_size: 360
+  steps: 3600
+  test_steps: 3600
+  action_interval: 10
+  episodes: 2000
+  update_model_rate: 361
+  update_target_rate: 1000000
+  hidden_size: 64
+  recurrent_N: 1
+  n_rollout_threads: 1
+  epoch: 15
+  entropy_coef: 0.05
+

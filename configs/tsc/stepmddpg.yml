@@ -1,0 +1,35 @@
+includes:
+  - configs/tsc/base.yml
+
+model:
+  name: stepmddpg
+  train_model: True           # 固定值
+  tau: 0.01                   # 软更新
+  gamma: 0.99                 #
+  grad_clip: 0.5              # 截断范围
+  learning_rate: 0.001        # 学习率
+  batch_size: 256             # 抽样batch
+
+  epsilon: 0.5                #
+  epsilon_decay: 0.998
+  epsilon_min: 0.001
+  phase: True                 # 考虑路口的相位
+  one_hot: True               # one_hot 编码
+  ob_length: 12               # 固定值
+  phase_dim: 8                # 固定值
+  n_block: 1                  # transformer block 个数
+  n_embd: 64                  # transformer 隐藏层
+  n_head: 1                   # 多头注意力
+  gan_nembd: 64               # gan 网络隐藏层
+  gan_glr: 0.005              # gan 生成网络学习率
+  gan_dlr: 0.01               # gan 鉴别网络学习率
+  max_timesteps: 50           # replay buffer TODO 代修改
+  latent_dim: 128             # gan 潜在层
+
+trainer:
+  learning_start: 1000        # 开始为随机策略
+  episodes: 1000              # 总迭代次数
+  update_model_rate: 10       # 更新模型的速率
+  update_target_rate: 50      # 更新目标模型的速率
+  action_interval: 20         #
+  similarity_threshold: 0.1   #
